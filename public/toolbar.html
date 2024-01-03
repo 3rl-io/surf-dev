@@ -1,0 +1,245 @@
+<div class="tb-left">
+    <template x-for="(zone, index) in zones">
+        <template x-if="zone">
+            <button @click="goToZone(index)" :class="{active : activeZone === index}">
+                <i :class="zone.iconCls"></i>
+            </button>
+        </template>
+    </template>
+</div>
+<div class="tb-center">
+    <div class="center-tab">
+        <div class="search-box" @click="if (!$store.toolbar.searchIsOpen) {$refs.searchInput.focus()}">
+            <form class="search-form" @click="$event.stopPropagation()" @submit="$store.toolbar.submitSearch($event)">
+                <input type="text" placeholder=" " x-model="$store.toolbar.searchText"
+                       x-ref="searchInput" @focus="$store.toolbar.searchIsOpen = true"  @blur.debounce="$store.toolbar.searchIsOpen = false" />
+                <button type="reset" @click="if (!$store.toolbar.searchIsOpen) {$refs.searchInput.focus()}"></button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="tb-right" x-data="toolbarCtrl" x-init="initFn">
+    <button class="dimmer-button" @click="cycleDimmer">
+        <i class="far fa-lightbulb"></i>
+    </button>
+    <!---<button>
+        <i class="fas fa-sliders"></i>
+    </button>--->
+    <span class="date-time" x-html="time + '<br>' + date"></span>
+    <button class="fs-toggle" @click="toggleFullScreen">
+        <i class="fas fa-expand" x-show="!isFullscreen"></i>
+        <i class="fas fa-compress" x-show="isFullscreen"></i>
+    </button>
+</div>
+
+<style>
+    /* general styles */
+    .s-toolbar {
+        border-top: 1px solid transparent;
+    }
+    .s-sub-toolbar {
+        /*padding-left: 150px;*/
+    }
+
+    .tb-left, .tb-right, .sb-left {
+        display: inline-block;
+        border-radius: 5px;
+        & button {
+          font-size: 1.4rem;
+          cursor: pointer;
+          height: 100%;
+          padding: 0;
+          margin: 0 -2px;
+          background-color: transparent;
+          border: none;
+          transition: background-color 0.1s ease, color 0.2s ease,
+          border 0.2s ease, border-top-width 0.2s ease;
+          outline: none;
+        }
+        & button.active i {
+          transform: scale(1.3);
+        }
+    }
+
+    .tb-left button, .tb-left i, .sb-left i {
+        transition: transform 300ms cubic-bezier(.55,.72,.66,1.39);
+    }
+
+    .tb-left, .tb-right {
+        background-color: rgba(30,30,30,.7);
+        & button {
+          color: rgba(255,255,255,1);
+        }
+        & button.active {
+          transform: scale(1.1);
+        }
+    }
+
+    .tb-left button {
+        width: 46px;
+        margin: 0 2px;
+        border-radius: 5px;
+        &.active {
+             background-color: #141c27;
+         }
+    }
+
+    .tb-center, .tb-right {
+        position: absolute;
+        right: 0;
+        & button {
+          width: 35px;
+      }
+    }
+
+    .tb-right {
+        padding: 0 10px;
+        height: 100%;
+    }
+    .date-time {
+        display: inline-block;
+        line-height: 1.1rem;
+        font-size: 1.2rem;
+        text-align: right;
+        vertical-align: middle;
+        height: 100%;
+        cursor: default;
+        color: rgba(255,255,255,1);
+        font-weight: 600;
+        margin: 0 5px;
+    }
+
+    .sb-left {
+        padding: 0 10px;
+        & button {
+           pointer-events: all;
+           width: 45px;
+           color: rgba(255,255,255,.8);
+        }
+    }
+
+    .solid-toolbar .tb-left,.solid-toolbar .tb-right,
+    .solid-toolbar button.active {
+        background-color: transparent;
+    }
+
+
+    button.active .fa-expand, button.active .fa-compress {
+        color: rgba(255,255,255,.9);
+    }
+
+
+
+    .tb-center {
+        width: 100%;
+        text-align: center;
+        pointer-events: none;
+        display: inline-block;
+        height: 50px;
+        top: -4px;
+    & * {
+          pointer-events: all;
+      }
+    }
+
+    .center-tab {
+        padding: 0;
+        display: inline-block;
+        border-radius: 7px;
+        background-color: rgba(30,30,30,.7);
+        height: 100%;
+        /*transition: padding 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55),
+            margin 500ms cubic-bezier(0.68, -0.55, 0.27, 1.55);*/
+    }
+
+    .search-box {
+        cursor: pointer;
+        padding: 0 40px;
+    }
+
+    .search-form {
+        font-size: 20px;
+        border: solid 0.15em #fff;
+        color: #fff;
+        display: inline-block;
+        position: relative;
+        border-radius: 2.5em;
+        margin-top: 7px;
+        cursor: pointer;
+    }
+
+    .solid-toolbar .search-form {
+        border: solid 0.15em rgba(170,170,170,1);
+    }
+
+    .search-form input[type=text] {
+        font-family: inherit;
+        font-weight: bold;
+        font-size: 1.4rem;
+        width: 1.2em;
+        height: 1.2em;
+        padding: 0 .4em 0 .5em;
+        border: none;
+        box-sizing: border-box;
+        border-radius: 2.5em;
+        transition: width 200ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 50ms;
+        background-color: rgba(30,30,30,0);
+        cursor: pointer;
+        color: #fff;
+    }
+
+    .solid-toolbar .search-form input[type=text] {
+        color: rgba(170,170,170,1);
+    }
+
+    .search-form input[type=text]:focus {
+        outline: none;
+        cursor: text;
+    }
+    .search-form input[type=text]:focus, .search-form input[type=text]:not(:placeholder-shown) {
+        width: 350px;
+        transition: width 200ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+    .search-form input[type=text]:focus + button[type=reset], .search-form input[type=text]:not(:placeholder-shown) + button[type=reset] {
+        transform: rotate(-45deg) translateY(0);
+        transition: transform 50ms ease-out 200ms;
+    }
+    .search-form input[type=text]:focus + button[type=reset]:after, .search-form input[type=text]:not(:placeholder-shown) + button[type=reset]:after {
+        opacity: 1;
+        transition: top 50ms ease-out 200ms, right 50ms ease-out 200ms, opacity 50ms ease 200ms;
+    }
+    .search-form button[type=reset] {
+        background-color: transparent;
+        width: 1.4em;
+        height: 1.4em;
+        border: 0;
+        padding: 0;
+        outline: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0.25em;
+        right: 0.35em;
+        transform: rotate(-45deg) translateY(1.8em);
+        transition: transform 50ms ease-out 50ms;
+    }
+    .search-form button[type=reset]:before, .search-form button[type=reset]:after {
+        content: "";
+        transition: background-color 0.2s ease;
+        background-color: rgba(255,255,255,1);
+        width: 0.2em;
+        height: 1.1em;
+        position: absolute;
+        cursor: pointer;
+    }
+    .solid-toolbar .search-form button[type=reset]:before, .solid-toolbar .search-form button[type=reset]:after {
+        background-color: rgba(170,170,170,1);
+    }
+
+    .search-form button[type=reset]:after {
+        transform: rotate(90deg);
+        opacity: 0;
+        transition: transform 100ms ease-out, opacity 100ms ease-out;
+    }
+</style>

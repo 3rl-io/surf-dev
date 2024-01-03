@@ -1,0 +1,42 @@
+<head>
+    <title>Surf: the high-performance home page</title>
+    <script src="app.js"></script>
+</head>
+<body>
+<s-room x-data="appCtrl" :background="background"
+        @zoneloadrequest="zones[$event.detail] && (zones[$event.detail].loaded = true)"
+        @zoneactivated="activeZone = $event.detail">
+
+    <s-group camera scroll-swipe>
+        <s-toolbar inner-html-file="toolbar.html,toolbar.js"
+                   :outer-class="(zones[activeZone] && zones[activeZone].toolbarCls) || ''"></s-toolbar>
+        <s-div position="0 0 -10" height="150" width="375" :outer-class="'dimmer dimmer-' + dimmerLevel" pinned></s-div>
+    </s-group>
+    <template x-for="(zone, index) in zones">
+        <template x-if="zone && (zone.loaded || index === 0) && zone.template">
+            <s-group :zone="index"
+                     :inner-html-file="'zones/' + zone.template + '.html' + (zone.hasScript ? ',zones/' + zone.template + '.js' : '')"></s-group>
+        </template>
+    </template>
+</s-room>
+<script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script>window.spidgetsToken = 'EVHXA4XGEY';</script>
+<script src="https://3rl.io/assets/general/scripts/spidgets-core.min.js?v=0.01"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="zones/toolbar-themes.css">
+
+
+<!--- custom elements ---->
+<script src="widgets/chart-widget.js"></script>
+<script src="widgets/weather-widget.js"></script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H6HDPL2WP6"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-H6HDPL2WP6');
+</script>
+</body>

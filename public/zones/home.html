@@ -1,0 +1,88 @@
+<weather-widget position="-23 10 0" rotation="0 3 0"></weather-widget>
+<s-div position="12 3 0" rotation="0 -3 0" width="870" height="680" x-ref="techWall" outer-class="news-wall"
+       iframe-height="2022px" iframe-src="//rss.app/embed/v1/wall/tJ35FPJXEHi5o74J"
+       :visible="$store.home.state === 0 ? 1 : 0"></s-div>
+<template x-if="$store.home.groundNewsLoaded">
+    <s-div position="12 3 0" rotation="0 -3 0" width="870" height="680" zoom=".8" outer-class="news-wall"
+           iframe-src="//ground.news" :visible="$store.home.state === 1 ? 1 : 0"></s-div>
+</template>
+<template x-if="$store.home.vcNewsLoaded">
+    <s-div position="12 3 0" rotation="0 -3 0" width="870" height="680" x-ref="vcWall" outer-class="news-wall"
+           iframe-height="2022px" iframe-src="//rss.app/embed/v1/wall/trtvjffGV42sWptk" iframe-reload-debounce="300"
+           :visible="$store.home.state === 2 ? 1 : 0"></s-div>
+</template>
+
+<s-div zoom=".8" position="12 -16.5 0" rotation="0 -3 0" width="870" height="40" outer-class="news-buttons">
+    <button class="tinted bouncy" :class=" {active : $store.home.state === 0}"
+            @click="$store.home.state = 0;  $refs.techWall.reload();">Tech News</button>
+    <button class="tinted bouncy" :class=" {active : $store.home.state === 1}"
+            @click="$store.home.state = 1; $store.home.groundNewsLoaded = true;">Ground News</button>
+    <button class="tinted bouncy" :class=" {active : $store.home.state === 2}"
+            @click="$store.home.state = 2; $store.home.vcNewsLoaded && $refs.vcWall.reload(); $store.home.vcNewsLoaded = true;">VC News</button>
+</s-div>
+<s-div position="-23 -3 0" rotation="0 3 0" width="430" height="220" outer-class="tinted padded">
+    <div class="welcome-box tinted-2">
+        <h3>Surf Update - v0.2 alpha</h3>
+        <p>
+            Welcome to Surf. Current priorities:<br>
+            - Customize zones and persist in localStorage<br>
+            - Contextual/LLM search<br>
+        </p>
+        <p>First-time setup for YouTube/Music: Install
+            <a class="text-blue" href="https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe" target="_blank">
+                this extension
+            </a> then refresh.</p>
+    </div>
+</s-div>
+<style>
+    .welcome-box {
+        height: 100%;
+        width: 100%;
+        font-size: 1.2rem;
+        & p, & h3 {
+           margin: 0;
+           padding-top: .6em;
+           padding-left: 1em;
+           padding-right: 1em;
+        }
+    }
+
+    .text-blue {
+        color: #80fff2 !important;
+    }
+    .fa-paste {
+        cursor: pointer;
+    }
+    .ww-box * {
+        font-size: 1rem;
+    }
+    .ww_hour_date {
+        font-size: 1rem !important;
+    }
+    .news-wall>div {
+        border-radius: 5px;
+    }
+    .news-buttons {
+        text-align: center;
+        padding-top: 5px;
+        & button {
+           border-radius: 5px;
+           font-size: 1.3rem;
+           width: 150px;
+           height: 35px;
+           cursor: pointer;
+            &.active {
+                 transform: scale(1.1);
+                 background-color: rgba(0,16,32,.9);
+                 border: 1px solid rgba(255,255,255,.4);
+                 color: rgba(255,255,255,1);
+             }
+       }
+    }
+
+    .tinted-2 {
+        background-color: rgba(0,16,32,.7);
+        border: 1px solid rgba(255,255,255,.4);
+        color: rgba(255,255,255,1);
+    }
+</style>

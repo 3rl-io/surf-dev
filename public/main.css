@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'Blender Book';
+    src: url('assets/fonts/Blender-Book.woff2') format('woff2'),url('assets/fonts/Blender-Book.woff') format('woff');
+    font-weight: 400
+}
+
+body, body * {
+    font-family: 'Blender Book', Fallback, sans-serif;
+    font-weight: 400;
+}
+
+.tinted {
+    border-radius: 3px;
+    background-color: rgba(0,5,10,.5);
+    border: 1px solid rgba(255,255,255,.2);
+    color: rgba(255,255,255,.5);
+}
+
+.padded {
+    padding: 8px;
+}
+.transparent, .transparent a {
+    color: rgba(0,0,0,0);
+}
+
+.bouncy {
+    transition: transform 300ms cubic-bezier(.55,.72,.66,1.39);
+}
+
+* {
+    scrollbar-width: auto;
+    scrollbar-color: rgba(0,5,10,.4) transparent;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(0,5,10,.5);
+    border-radius: 5px;
+}
+.dimmer {
+    pointer-events: none;
+    transition: background-color 0.5s ease;
+}
+.dimmer-0 {
+    background-color: rgba(0, 0, 0, 0);
+}
+.dimmer-1 {
+    background-color: rgba(40, 10, 0, 0.3);
+}
+.dimmer-2 {
+    background-color: rgba(12, 3, 0, .65);
+}
+.dimmer-3 {
+    background-color: rgba(4, 1, 0, .85);
+}

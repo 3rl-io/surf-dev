@@ -1,0 +1,118 @@
+<!--- --->
+<s-screen zoom=".9">
+    <div class="screen-container" x-data="videoCtrl" x-init="initFn">
+        <template x-if="twitchScriptLoaded">
+            <div class="video-left" x-show="$store.video.state !== 2">
+                <div id="twitch-embed" :class="{active:$store.video.state === 0}" x-init="twitchInit"></div>
+                <form class="twitch-channel-entry" x-show="$store.video.state === 1" @submit="setTwitchChannel($event)">
+                    <input type="text" class="twitch-channel-input" placeholder="twitch channel" x-model="twitchChannelEntry"/>
+                    <button type="submit" @click="setTwitchChannel" class="twitch-go">Go</button>
+                    <button @click="$store.video.state = 0" type="button" class="twitch-expand">Expand&nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </template>
+        <div class="video-right" :class="{active:$store.video.state === 2}" x-show="$store.video.state !== 0">
+            <iframe src="//youtube.com/feed/subscriptions?theme=dark" width="100%" height="100%" allowfullscreen></iframe>
+            <button @click="$store.video.state = 2" class="youtube-expand"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Expand</button>
+        </div>
+        <!---youtube.com/feed/subscriptions?theme=dark--->
+    </div>
+</s-screen>
+<s-sub-toolbar>
+    <div class="sb-left video-sb-left">
+
+    </div>
+</s-sub-toolbar>
+
+<style>
+    .screen-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        & button {
+              cursor: pointer;
+              color: white;
+          }
+        & button, .twitch-channel-input {
+            pointer-events: all;
+            height: 30px;
+            font-size: 1.1rem;
+            border: none;
+            margin-top: 5px;
+        }
+    }
+    textarea:focus, input:focus{
+        outline: none;
+    }
+    .video-right, .video-left {
+        position: relative;
+    }
+
+    .video-left {
+        flex-grow:4;
+        background-color: rgba(0,0,0,.6);
+    }
+    .video-right {
+        flex-grow:6;
+        height: 875px;
+        background-color: rgba(15,15,15,1);
+        &.active {
+             height: 970px;
+         }
+    }
+
+    #twitch-embed {
+        aspect-ratio: 16/9;
+        &.active {
+         aspect-ratio: unset;
+         width: 100%;
+        }
+    }
+
+    .twitch-expand, .youtube-expand {
+        border-radius: 2px;
+        position: absolute;
+        width: 100px;
+    }
+
+    .twitch-channel-entry {
+        pointer-events: none;
+        padding-left: 20px;
+        & button {
+          background-color: #772ce8;
+        }
+        & .twitch-go {
+          border-radius: 0 15px 15px 0;
+          padding-right: 12px;
+          width: 50px;
+        }
+        & .twitch-expand {
+              right: 0;
+              border-top-right-radius: 15px;
+              border-bottom-right-radius: 15px;
+              z-index: 1;
+        }
+    }
+
+    .twitch-channel-input {
+        width: 150px;
+        border-radius: 15px 0 0 15px;
+        padding-left: 20px;
+        margin-right: -4px;
+        background-color: rgba(255,255,255,.9);
+    }
+    ::placeholder {
+        color: #333;
+    }
+
+    .youtube-expand {
+        left: -10px;
+        bottom: 20px;
+        background-color: #f00;
+        font-weight: 700;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+
+</style>

@@ -1,0 +1,31 @@
+button.active {
+    & .fa-house-chimney {
+        color: #70fff2;
+    }
+    & .fa-tv {
+        color: #ff7070;
+    }
+    & .fa-headphones {
+        color: #c186ff;
+    }
+    & .fa-dollar-sign {
+        color: #a0ff23;
+    }
+}
+
+.video-toolbar, .audio-toolbar {
+    border-top: 1px solid rgba(255,255,255,.2);
+    & .tb-left button, & .tb-right * {
+        color: rgba(255,255,255,.7);
+    }
+    & .center-tab {
+        background-color: transparent;
+    }
+}
+
+.video-toolbar {
+    background-color: rgba(15,15,15,1);
+}
+.audio-toolbar {
+    background-color: rgba(0,0,0,1);
+}
