@@ -11,9 +11,12 @@ button.active {
     & .fa-dollar-sign {
         color: #a0ff23;
     }
+    & .fa-pizza-slice {
+        color: #ffff63;
+    }
 }
 
-.video-toolbar, .audio-toolbar {
+.video-toolbar, .black-toolbar {
     border-top: 1px solid rgba(255,255,255,.2);
     & .tb-left button, & .tb-right * {
         color: rgba(255,255,255,.7);
@@ -26,6 +29,6 @@ button.active {
 .video-toolbar {
     background-color: rgba(15,15,15,1);
 }
-.audio-toolbar {
+.black-toolbar {
     background-color: rgba(0,0,0,1);
 }

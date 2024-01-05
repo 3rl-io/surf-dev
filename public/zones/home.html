@@ -17,21 +17,20 @@
             @click="$store.home.state = 0;  $refs.techWall.reload();">Tech News</button>
     <button class="tinted bouncy" :class=" {active : $store.home.state === 1}"
             @click="$store.home.state = 1; $store.home.groundNewsLoaded = true;">Ground News</button>
-    <button class="tinted bouncy" :class=" {active : $store.home.state === 2}"
-            @click="$store.home.state = 2; $store.home.vcNewsLoaded && $refs.vcWall.reload(); $store.home.vcNewsLoaded = true;">VC News</button>
 </s-div>
-<s-div position="-23 -3 0" rotation="0 3 0" width="430" height="220" outer-class="tinted padded">
+<s-div position="-23 -5.5 0" rotation="0 3 0" width="430" height="300" outer-class="tinted padded">
     <div class="welcome-box tinted-2">
         <h3>Surf Update - v0.2 alpha</h3>
         <p>
-            Welcome to Surf. Current priorities:<br>
-            - Customize zones and persist in localStorage<br>
-            - Contextual/LLM search<br>
+            Welcome to Surf, your new home page. Scroll in the empty areas to switch screens.<br><br>
+            Work-in-progress:<br>
+            - Customize your screens and widgets<br>
+            - Favorites/bookmarks bar<br>
+            - LLM search<br><br>
+            <a href="https://github.com/3rl-io/surf-dev" target="_blank" class="text-blue">Source code</a> |
+            <a href="https://twitter.com/3RLTeam" target="_blank" class="text-blue">Twitter</a> |
+            <a href="https://www.threads.net/@my.3rl" target="_blank" class="text-blue">Threads</a> | hello@3RL.io
         </p>
-        <p>First-time setup for YouTube/Music: Install
-            <a class="text-blue" href="https://chrome.google.com/webstore/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe" target="_blank">
-                this extension
-            </a> then refresh.</p>
     </div>
 </s-div>
 <style>
