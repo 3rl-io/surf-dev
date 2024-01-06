@@ -3,7 +3,7 @@ if (isProd) {
     zones = [
         {template: 'home', hasScript: true, iconCls: 'fas fa-house-chimney'},
         {template: 'finance', iconCls: 'fas fa-dollar-sign'},
-        {template: 'pizza', toolbarCls: 'solid-toolbar black-toolbar', iconCls: 'fas fa-pizza-slice'}, null, null, null];
+        null, null, null, null];
 } else {
     zones = [
         {template: '', hasScript: true, iconCls: 'fas fa-house-chimney'},
@@ -24,6 +24,9 @@ const appCtrl = {
     dimmerLevel: 0,
     cycleDimmer() {
         this.dimmerLevel = (this.dimmerLevel + 1) % 4
+    },
+    activateZone(evt) {
+        this.activeZone = evt.detail;
     },
     goToZone(index) {
         if (index === this.activeZone && Alpine.store('video')) {

@@ -6,7 +6,7 @@
 <body>
 <s-room x-data="appCtrl" :background="background"
         @zoneloadrequest="zones[$event.detail] && (zones[$event.detail].loaded = true)"
-        @zoneactivated="activeZone = $event.detail">
+        @zoneactivated="activateZone($event)">
 
     <s-group camera scroll-swipe>
         <s-toolbar inner-html-file="toolbar.html,toolbar.js"

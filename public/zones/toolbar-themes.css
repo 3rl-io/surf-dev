@@ -11,9 +11,6 @@ button.active {
     & .fa-dollar-sign {
         color: #a0ff23;
     }
-    & .fa-pizza-slice {
-        color: #ffff63;
-    }
 }
 
 .video-toolbar, .black-toolbar {
