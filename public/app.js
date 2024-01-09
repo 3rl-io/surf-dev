@@ -6,7 +6,7 @@ if (isProd) {
         null, null, null, null];
 } else {
     zones = [
-        {template: '', hasScript: true, iconCls: 'fas fa-house-chimney'},
+        {template: 'home', hasScript: true, iconCls: 'fas fa-house-chimney'},
         {template: 'video', hasScript: true, toolbarCls: 'solid-toolbar video-toolbar', iconCls: 'fas fa-tv'},
         {template: 'audio', toolbarCls: 'solid-toolbar black-toolbar', iconCls: 'fas fa-headphones'},
         {template: 'finance', iconCls: 'fas fa-dollar-sign'},
@@ -18,7 +18,7 @@ const urlParams = new URLSearchParams(window.location.search),
     bg = urlParams.get('bg');
 
 const appCtrl = {
-    background: bg || 'assets/backgrounds/newmiami.jpg',
+    background: bg || 'assets/backgrounds/goa.jpg',
     zones,
     activeZone: 0,
     dimmerLevel: 0,

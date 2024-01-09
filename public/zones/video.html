@@ -1,5 +1,5 @@
 <!--- --->
-<s-screen zoom=".9">
+<s-screen zoom=".8">
     <div class="screen-container" x-data="videoCtrl" x-init="initFn">
         <template x-if="twitchScriptLoaded">
             <div class="video-left" x-show="$store.video.state !== 2">
@@ -55,10 +55,11 @@
     }
     .video-right {
         flex-grow:6;
-        height: 875px;
+        height: 1025px;
         background-color: rgba(15,15,15,1);
+        margin-right: -25px;
         &.active {
-             height: 970px;
+             height: 1080px;
          }
     }
 
@@ -108,7 +109,7 @@
 
     .youtube-expand {
         left: -10px;
-        bottom: 20px;
+        bottom: 60px;
         background-color: #f00;
         font-weight: 700;
         border-top-left-radius: 15px;
