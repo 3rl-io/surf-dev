@@ -19,3 +19,7 @@ node index
 Open localhost:8000 in your browser
 
 Option 2. Download this repository and run the `public` directory on your web server of choice
+
+--------
+
+Local use only: some third party websites (e.g. YT) need [this extension](https://chromewebstore.google.com/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe) to be loaded.
