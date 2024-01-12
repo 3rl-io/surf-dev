@@ -9,7 +9,7 @@ const toolbarCtrl = {
             ampm = rawHours >= 12 ? 'PM' : 'AM';
 
         this.time = `${hours}:${minutes} ${ampm}`;
-        this.date = (date.getMonth()+1) + "/" + date.getDate() + "/" + (date.getFullYear() % 100);
+        this.date = new Intl.DateTimeFormat(Intl.DateTimeFormat().resolvedOptions().locale).format(date);
     },
     initFn() {
         const self = this;
@@ -32,10 +32,28 @@ const toolbarCtrl = {
 Alpine.store('toolbar', {
     searchText: '',
     searchIsOpen: false,
-    submitSearch(evt) {
-        window.open('http://www.google.com/search?q=' + encodeURIComponent(this.searchText), '_blank');
+    searchRef: null,
+    init(){
 
-        this.searchText = '';
+        const self = this;
+        document.addEventListener("visibilitychange",() => {
+            if (!self.searchRef) return;
+            if (document.hidden) {
+                self.searchRef.blur();
+            }  else {
+                self.searchRef.focus();
+                self.searchIsOpen = true;
+            }
+        })
+    },
+    submitSearch(evt) {
+        if (this.searchText) {
+            window.open('http://www.google.com/search?q=' + encodeURIComponent(this.searchText), '_blank');
+
+            this.searchText = '';
+        }
+        this.searchRef.blur();
         evt.preventDefault();
+
     }
 })
