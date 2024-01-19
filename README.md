@@ -3,8 +3,9 @@
 v0.2 source
 [Live Demo](https://3rl.io/surf)
 
-This project makes it easy build spatial dashboards that are platform-agnostic. They can be launched in any browser without downloads or installs, and are compatible with various display types and input devices. It combines 3RL's "spidgets" system (spatial physics and rendering for HTML widgets) with alpinejs (interactivity, data binding, dynamic DOM).
+This project makes it easy build spatial dashboards for landscape displays (e.g. PC, tablet, smart TV, AR glasses). It combines spidgets (spatial physics and compositor for HTML widgets) with alpinejs (interactivity, data binding, dynamic DOM).
 
+Current priorities: improving the UI; adding controls for AR tracking (3DoF)
 
 ## Try it
 
