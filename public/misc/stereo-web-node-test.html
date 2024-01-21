@@ -1,0 +1,70 @@
+<!-- stereo web node concept -->
+<body>
+<div class="reflect2">
+    <div class="reflect1">
+        <div class="rotate">
+            <div class="scale">
+                <div class="position">
+                    <iframe width="640" height="360" src="https://www.youtube.com/embed/BHACKCNDMW8?si=fijkavnl446hFSgj" title="YouTube video player"
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---
+<div class="guide">
+    <div>∞</div>
+    <div>∞</div>
+</div> --->
+</body>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background-color: black;
+    }
+
+    .position {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: perspective(200px) rotateX(10deg);
+    }
+    .scale {
+        transform-origin: top left;
+        transform: scaleX(.5)
+    }
+    .rotate {
+        transform: rotate(-90deg);
+        height: 50vw;
+    }
+    .reflect1 {
+        -webkit-box-reflect: above;
+        transform: rotate(90deg) skewY(-8deg);
+    }
+    .reflect2 {
+        -webkit-box-reflect: right;
+    }
+
+    .guide {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        position: absolute;
+        top: 0;
+        pointer-events: none;
+    }
+    .guide div {
+        flex: 1;
+        text-align: center;
+        color: white;
+        font-size: 4em;
+        padding-top: 20vh;
+        pointer-events: none;
+        border: 1px solid white;
+    }
+</style>
