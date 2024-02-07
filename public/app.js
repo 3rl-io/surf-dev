@@ -1,24 +1,12 @@
-let zones = null;
-if (isProd) {
-    zones = [
-        {template: 'home', hasScript: true, iconCls: 'fas fa-house-chimney'},
-        {template: 'finance', iconCls: 'fas fa-dollar-sign'},
-        null, null, null, null];
-} else {
-    zones = [
-        {template: 'home', hasScript: true, iconCls: 'fas fa-house-chimney'},
-        {template: 'video', hasScript: true, toolbarCls: 'solid-toolbar video-toolbar', iconCls: 'fas fa-tv'},
-        {template: 'audio', toolbarCls: 'solid-toolbar black-toolbar', iconCls: 'fas fa-headphones'},
-        {template: 'finance', iconCls: 'fas fa-dollar-sign'},
-        null, null];
-}
-
-
-const urlParams = new URLSearchParams(window.location.search),
-    bg = urlParams.get('bg');
+const urlParams = new URLSearchParams(window.location.search);
+let zones = [{template: 'home', hasScript: true, iconCls: 'fas fa-house-chimney'},
+    {template: 'video', hasScript: true, toolbarCls: 'solid-toolbar video-toolbar', iconCls: 'fas fa-tv'},
+    {template: 'audio', toolbarCls: 'solid-toolbar black-toolbar', iconCls: 'fas fa-headphones'},
+    {template: 'discord', toolbarCls: 'solid-toolbar discord-toolbar', iconCls: 'fab fa-discord'},
+    {template: 'finance', iconCls: 'fas fa-dollar-sign'}];
 
 const appCtrl = {
-    background: bg || 'assets/backgrounds/goa.jpg',
+    background: urlParams.get('bg') || 'assets/backgrounds/polarcity.jpg',
     zones,
     activeZone: 0,
     dimmerLevel: 0,

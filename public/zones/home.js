@@ -1,5 +1,5 @@
 Alpine.store('home', {
     state: 0,
-    vcNewsLoaded: false,
+    worldNewsLoaded: false,
     groundNewsLoaded: false
 })

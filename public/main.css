@@ -24,7 +24,7 @@ body, body * {
 }
 
 .bouncy {
-    transition: transform 300ms cubic-bezier(.55,.72,.66,1.39);
+    transition: transform 200ms cubic-bezier(.55,.72,.66,1.39);
 }
 
 * {
@@ -60,4 +60,17 @@ body, body * {
 }
 .dimmer-3 {
     background-color: rgba(4, 1, 0, .85);
+}
+
+.screen-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    & button {
+        cursor: pointer;
+    }
+    & form {
+        pointer-events: all;
+    }
 }

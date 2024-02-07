@@ -6,14 +6,17 @@ button.active {
         color: #ff7070;
     }
     & .fa-headphones {
-        color: #c186ff;
+        color: #ffff90;
     }
+& .fa-discord {
+      color: #c186ff;
+  }
     & .fa-dollar-sign {
         color: #a0ff23;
     }
 }
 
-.video-toolbar, .black-toolbar {
+.video-toolbar, .black-toolbar, .discord-toolbar  {
     border-top: 1px solid rgba(255,255,255,.2);
     & .tb-left *, & .tb-center *, & .tb-right * {
         color: rgba(255,255,255,.7);
@@ -27,5 +30,8 @@ button.active {
     background-color: rgba(15,15,15,1);
 }
 .black-toolbar {
-    background-color: rgba(0,0,0,1);
+    background-color: #020202;
+}
+.discord-toolbar {
+    background-color: #313338;
 }

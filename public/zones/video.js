@@ -24,6 +24,7 @@ const videoCtrl = {
             height: '100%',
             channel: this.twitchChannel,
             autoplay: false,
+            allowfullscreen: false,
             layout: 'video',
             parent: ['localhost', '3rl.io']
         });

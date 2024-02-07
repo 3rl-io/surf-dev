@@ -1,6 +1,6 @@
 # 3RL Surf (experimental)
 
-v0.2 source
+v0.35 source
 [Live Demo](https://3rl.io/surf)
 
 This project makes it easy build spatial dashboards for landscape displays (e.g. PC, tablet, smart TV, AR glasses). It combines spidgets (spatial physics and compositor for HTML widgets) with alpinejs (interactivity, data binding, dynamic DOM).

@@ -1,5 +1,5 @@
 const toolbarCtrl = {
-    time: '', date: '', isFullscreen: false,
+    time: '', isFullscreen: false,
     setDateTime() {
         const date = new Date(),
             rawHours = date.getHours(),
@@ -9,7 +9,6 @@ const toolbarCtrl = {
             ampm = rawHours >= 12 ? 'PM' : 'AM';
 
         this.time = `${hours}:${minutes} ${ampm}`;
-        this.date = new Intl.DateTimeFormat(Intl.DateTimeFormat().resolvedOptions().locale).format(date);
     },
     initFn() {
         const self = this;
@@ -32,27 +31,23 @@ const toolbarCtrl = {
 Alpine.store('toolbar', {
     searchText: '',
     searchIsOpen: false,
-    searchRef: null,
-    init(){
-
-        const self = this;
-        document.addEventListener("visibilitychange",() => {
-            if (!self.searchRef) return;
-            if (document.hidden) {
-                self.searchRef.blur();
-            }  else {
-                self.searchRef.focus();
-                self.searchIsOpen = true;
-            }
-        })
+    onSearchBoxClick(inputEl) {
+        console.log(document.activeElement);
+        if (inputEl !== document.activeElement) {
+            inputEl.focus();
+        }
+    },
+    onSearchInputFocus(el){
+        if (!this.searchIsOpen) {
+            this.searchIsOpen = true;
+        }
+        el.select();
     },
     submitSearch(evt) {
         if (this.searchText) {
             window.open('http://www.google.com/search?q=' + encodeURIComponent(this.searchText), '_blank');
-
             this.searchText = '';
         }
-        this.searchRef.blur();
         evt.preventDefault();
 
     }

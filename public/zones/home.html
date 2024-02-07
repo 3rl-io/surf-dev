@@ -1,32 +1,31 @@
-<weather-widget position="-23 10 0" rotation="0 3 0"></weather-widget>
-<s-div position="12 3 0" rotation="0 -3 0" width="870" height="680" x-ref="techWall" outer-class="news-wall"
-       iframe-height="2022px" iframe-src="//rss.app/embed/v1/wall/tJ35FPJXEHi5o74J"
+<!--- --->
+<weather-widget position="22.5 14 0" rotation="0 -3 0" outer-class="weather"></weather-widget>
+
+
+<s-div position="-10.5 4 0" rotation="0 3 0" width="840" height="600" x-ref="techWall" outer-class="news-wall"
+       iframe-height="1632px" iframe-src="//rss.app/embed/v1/wall/tJ35FPJXEHi5o74J" zoom=".9"
        :visible="$store.home.state === 0 ? 1 : 0"></s-div>
-<template x-if="$store.home.groundNewsLoaded">
-    <s-div position="12 3 0" rotation="0 -3 0" width="870" height="680" zoom=".8" outer-class="news-wall"
-           iframe-src="//ground.news" :visible="$store.home.state === 1 ? 1 : 0"></s-div>
-</template>
-<template x-if="$store.home.vcNewsLoaded">
-    <s-div position="12 3 0" rotation="0 -3 0" width="870" height="680" x-ref="vcWall" outer-class="news-wall"
-           iframe-height="2022px" iframe-src="//rss.app/embed/v1/wall/trtvjffGV42sWptk" iframe-reload-debounce="300"
-           :visible="$store.home.state === 2 ? 1 : 0"></s-div>
+<template x-if="$store.home.worldNewsLoaded">
+    <s-div position="-10.5 4 0" rotation="0 3 0" width="840" height="600" x-ref="wnWall" outer-class="news-wall"
+           iframe-height="1632px" iframe-src="//rss.app/embed/v1/wall/_LCEeTWDNJ8DIUeIb" zoom=".9"
+           :visible="$store.home.state === 1 ? 1 : 0"></s-div>
 </template>
 
-<s-div zoom=".8" position="12 -16.5 0" rotation="0 -3 0" width="870" height="40" outer-class="news-buttons">
+<s-div zoom=".8" position="-10 -13 0" rotation="0 3 0" width="840" height="40" outer-class="news-buttons">
     <button class="tinted bouncy" :class=" {active : $store.home.state === 0}"
             @click="$store.home.state = 0;  $refs.techWall.reload();">Tech News</button>
     <button class="tinted bouncy" :class=" {active : $store.home.state === 1}"
-            @click="$store.home.state = 1; $store.home.groundNewsLoaded = true;">Ground News</button>
+            @click="$store.home.state = 1; $store.home.worldNewsLoaded = true;">World News</button>
 </s-div>
-<s-div position="-23 -5.5 0" rotation="0 3 0" width="430" height="300" outer-class="tinted padded">
+<s-div position="22.5 -0.5 0" rotation="0 -3 0" width="380" height="300" outer-class="tinted padded">
     <div class="welcome-box tinted-2">
-        <h3>Surf Update - v0.25 alpha</h3>
+        <h3>Surf Update - v0.35 alpha</h3>
         <p>
-            Welcome to Surf, your new home page. Scroll in the empty areas to switch screens.<br><br>
-            Work-in-progress:<br>
-            - Customize your screens and widgets<br>
-            - Favorites/bookmarks bar<br>
-            - LLM search<br><br>
+            Welcome to Surf (experimental)<br>
+            Coming soon:<br>
+            - Customize your zones<br>
+            - Bottom right button search + LLM<br><br>
+            <a href="https://chromewebstore.google.com/detail/ignore-x-frame-headers/gleekbfjekiniecknbkamfmkohkpodhe" target="_blank" class="text-blue">Extension</a> for loading third party sites (e.g. YouTube, Discord)<br>
             <a href="https://github.com/3rl-io/surf-dev" target="_blank" class="text-blue">Source code</a> |
             <a href="https://twitter.com/3RLTeam" target="_blank" class="text-blue">Twitter</a> |
             <a href="https://www.threads.net/@my.3rl" target="_blank" class="text-blue">Threads</a> | hello@3RL.io
@@ -58,7 +57,7 @@
     .ww_hour_date {
         font-size: 1rem !important;
     }
-    .news-wall>div {
+    .weather div, .news-wall>div {
         border-radius: 5px;
     }
     .news-buttons {

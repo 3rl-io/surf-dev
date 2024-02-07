@@ -12,10 +12,9 @@
             </div>
         </template>
         <div class="video-right" :class="{active:$store.video.state === 2}" x-show="$store.video.state !== 0">
-            <iframe src="//youtube.com/feed/subscriptions?theme=dark" width="100%" height="100%" allowfullscreen></iframe>
+            <iframe src="//youtube.com/feed/subscriptions?theme=dark" width="100%" height="100%"></iframe>
             <button @click="$store.video.state = 2" class="youtube-expand"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Expand</button>
         </div>
-        <!---youtube.com/feed/subscriptions?theme=dark--->
     </div>
 </s-screen>
 <s-sub-toolbar>
@@ -25,23 +24,17 @@
 </s-sub-toolbar>
 
 <style>
-    .screen-container {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        height: 100%;
-        & button {
-              cursor: pointer;
-              color: white;
-          }
-        & button, .twitch-channel-input {
-            pointer-events: all;
-            height: 30px;
-            font-size: 1.1rem;
-            border: none;
-            margin-top: 5px;
-        }
+    .screen-container input, .screen-container button {
+        height: 30px;
+        font-size: 1.1rem;
+        border: none;
+        margin-top: 5px;
     }
+
+    .screen-container button {
+        color: white;
+    }
+
     textarea:focus, input:focus{
         outline: none;
     }
@@ -59,16 +52,16 @@
         background-color: rgba(15,15,15,1);
         margin-right: -25px;
         &.active {
-             height: 1080px;
+             height: 1075px;
          }
     }
 
     #twitch-embed {
         aspect-ratio: 16/9;
-        &.active {
+    &.active {
          aspect-ratio: unset;
          width: 100%;
-        }
+     }
     }
 
     .twitch-expand, .youtube-expand {
@@ -80,20 +73,20 @@
     .twitch-channel-entry {
         pointer-events: none;
         padding-left: 20px;
-        & button {
+    & button {
           background-color: #772ce8;
-        }
-        & .twitch-go {
+      }
+    & .twitch-go {
           border-radius: 0 15px 15px 0;
           padding-right: 12px;
           width: 50px;
-        }
-        & .twitch-expand {
-              right: 0;
-              border-top-right-radius: 15px;
-              border-bottom-right-radius: 15px;
-              z-index: 1;
-        }
+      }
+    & .twitch-expand {
+          right: 0;
+          border-top-right-radius: 15px;
+          border-bottom-right-radius: 15px;
+          z-index: 1;
+      }
     }
 
     .twitch-channel-input {
