@@ -6,6 +6,7 @@ let zones = [{template: 'home', hasScript: true, iconCls: 'fas fa-house-chimney'
     {template: 'finance', iconCls: 'fas fa-dollar-sign'}];
 
 const appCtrl = {
+    offset: urlParams.get('offset') || 0,
     background: urlParams.get('bg') || 'assets/backgrounds/polarcity.jpg',
     zones,
     activeZone: 0,

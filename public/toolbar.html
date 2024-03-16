@@ -10,12 +10,9 @@
 <div class="tb-center" x-data="toolbarCtrl" x-init="initFn">
     <div class="center-tab">
 
-    <button class="dimmer-button" @click="cycleDimmer">
-        <i class="far fa-lightbulb"></i>
-    </button>
-    <!---<button>
-        <i class="fas fa-sliders"></i>
-    </button>--->
+        <button class="dimmer-button" @click="cycleDimmer">
+            <i class="far fa-lightbulb"></i>
+        </button>
     <span class="date-time" x-html="time"></span>
     <button class="fs-toggle" @click="toggleFullScreen">
         <i class="fas fa-expand" x-show="!isFullscreen"></i>
@@ -40,11 +37,8 @@
         border-top: 1px solid transparent;
         transition: background-color 0.1s ease;
     }
-    .s-sub-toolbar {
-        /*padding-left: 150px;*/
-    }
 
-    .tb-left, .center-tab, .tb-right, .sb-left {
+    .tb-left, .center-tab, .tb-right {
         display: inline-block;
         border-radius: 10px;
         & button {
@@ -61,7 +55,7 @@
         }
     }
 
-    .tb-left button, .tb-left i, .sb-left i {
+    .tb-left button, .tb-left i {
         transition: transform 300ms cubic-bezier(.55,.72,.66,1.39);
     }
 
@@ -89,15 +83,6 @@
     .solid-toolbar .tb-left,.solid-toolbar .tb-right,
     .solid-toolbar button.active {
         background-color: transparent;
-    }
-
-    .sb-left {
-        padding: 0 10px;
-        & button {
-          pointer-events: all;
-          width: 45px;
-          color: rgba(255,255,255,.8);
-        }
     }
 
     .tb-center {
