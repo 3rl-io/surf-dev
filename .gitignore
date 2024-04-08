@@ -1,4 +1,4 @@
 package-lock.json
-# Project exclude paths
+bun.lockb
 /node_modules/
 /.idea

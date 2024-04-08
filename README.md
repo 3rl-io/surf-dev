@@ -9,13 +9,13 @@ Current priorities: improving the UI; adding controls for AR tracking (3DoF)
 
 ## Try it
 
-Option 1. Requires [NodeJS](https://nodejs.org/en/) and [Git](https://git-scm.com/)
+Option 1. Requires [Bun](https://bun.sh/docs/installation) and [Git](https://git-scm.com/)
 
 ```
 git clone https://github.com/3rl-io/surf-dev
 cd surf-dev
-npm install
-node index
+bun install
+bun start
 ```
 Open localhost:8000 in your browser
 
